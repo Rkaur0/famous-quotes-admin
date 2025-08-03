@@ -1,0 +1,18 @@
+!DOCTYPE htmlhtml lang=enheadmeta charset=UTF-8titleAuthorstitle
+link href=cssbootstrap.min.css rel=stylesheetheadbody class=container mt-5
+%- include('partialsheader') %
+h2Authorsh2
+table class=tabletheadtrthNameththDOBththSexththActionsthtrtheadtbody
+  % authors.forEach(author = { %
+    tr
+      td%= author.firstName % %= author.lastName %td
+      td%= author.dob.toISOString().split('T')[0] %td
+      td%= author.sex %td
+      td
+        a href=authoreditauthorId=%= author.authorId % class=btn btn-sm btn-warningEdita
+        a href=authordeleteauthorId=%= author.authorId % class=btn btn-sm btn-dangerDeletea
+      td
+    tr
+  % }) %
+tbodytable
+bodyhtml

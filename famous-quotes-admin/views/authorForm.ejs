@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title><%= formTitle %></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet"></head><body class="container mt-5">
+  <%- include('partials/header') %>
+  <h2><%= formTitle %></h2>
+  <% if (message) { %><div class="alert alert-success"><%= message %></div><% } %>
+  <form method="POST" action="<%= action %>">
+    <% if (authorInfo) { %>
+      <input type="hidden" name="authorId" value="<%= authorInfo.authorId %>">
+    <% } %>
+    <div class="mb-3"><label>First Name</label>
+      <input type="text" name="firstName" class="form-control"
+        value="<%= authorInfo?.firstName || '' %>" required>
+    </div>
+    <div class="mb-3"><label>Last Name</label>
+      <input type="text" name="lastName" class="form-control"
+        value="<%= authorInfo?.lastName || '' %>" required>
+    </div>
+    <div class="mb-3"><label>Date of Birth</label>
+      <input type="date" name="dob" class="form-control"
+        value="<%= authorInfo?.dobISO || '' %>" required>
+    </div>
+    <div class="mb-3"><label>Sex</label><br>
+      <input type="radio" name="sex" value="M" id="sexM"
+        <%= authorInfo?.sex === 'M' ? 'checked' : '' %>><label for="sexM">M</label>
+      <input type="radio" name="sex" value="F" id="sexF"
+        <%= authorInfo?.sex === 'F' ? 'checked' : '' %> class="ms-3"><label for="sexF">F</label>
+    </div>
+    <button class="btn btn-primary"><%= formTitle %></button>
+  </form>
+</body></html>

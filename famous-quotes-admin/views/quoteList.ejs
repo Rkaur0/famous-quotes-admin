@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quotes</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <%- include('partials/header') %>
+  <h2>Quotes</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Quote</th>
+        <th>Category</th>
+        <th>Author</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% quotes.forEach(q => { %>
+        <tr>
+          <td><%= q.quote %></td>
+          <td><%= q.category %></td>
+          <td><%= q.firstName %> <%= q.lastName %></td>
+          <td>
+            <a href="/quote/edit?quoteId=<%= q.quoteId %>" 
+               class="btn btn-sm btn-warning">Edit</a>
+            <a href="/quote/delete?quoteId=<%= q.quoteId %>" 
+               class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

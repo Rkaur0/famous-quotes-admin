@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= formTitle %></title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <%- include('partials/header') %>
+  <h2><%= formTitle %></h2>
+  <% if (message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+  <form method="POST" action="<%= action %>">
+    <% if (quoteInfo) { %>
+      <input type="hidden" name="quoteId" value="<%= quoteInfo.quoteId %>">
+    <% } %>
+    <div class="mb-3">
+      <label>Quote Text</label>
+      <textarea name="quote" class="form-control" rows="3" required><%= quoteInfo?.quote || '' %></textarea>
+    </div>
+    <div class="mb-3">
+      <label>Category</label>
+      <input type="text" name="category" class="form-control" 
+             value="<%= quoteInfo?.category || '' %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Author</label>
+      <select name="authorId" class="form-select" required>
+        <option value="">-- Select an Author --</option>
+        <% authors.forEach(author => { %>
+          <option value="<%= author.authorId %>"
+            <%= quoteInfo?.authorId === author.authorId ? 'selected' : '' %>>
+            <%= author.firstName %> <%= author.lastName %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+    <button class="btn btn-primary"><%= formTitle %></button>
+  </form>
+</body>
+</html>
